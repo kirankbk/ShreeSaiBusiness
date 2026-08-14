@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Admin Dashboard - Shree Sai Business
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="top-header">
+
+    <div class="header-title">
+        श्री साई बिझनेस
+    </div>
+
+
+    <div class="header-user">
+
+        <span id="adminName">
+            Admin
+        </span>
+
+        <button
+            class="btn btn-danger"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<div class="layout">
+
+
+    <aside class="sidebar">
+
+        <h3>
+            Admin Menu
+        </h3>
+
+
+        <nav>
+
+            <a href="admin-dashboard.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="employees.html">
+                👥 कर्मचारी
+            </a>
+
+            <a href="#">
+                📅 Attendance
+            </a>
+
+            <a href="#">
+                📝 Leave
+            </a>
+
+            <a href="#">
+                💰 Advance
+            </a>
+
+            <a href="#">
+                💵 Salary
+            </a>
+
+            <a href="#">
+                📊 Reports
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+
+    <main class="main-content">
+
+        <h1 class="page-title">
+            Dashboard
+        </h1>
+
+
+        <div class="dashboard-grid">
+
+
+            <div class="dashboard-card">
+
+                <h4>
+                    एकूण कर्मचारी
+                </h4>
+
+                <div
+                    class="number"
+                    id="totalEmployees"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h4>
+                    आज उपस्थित
+                </h4>
+
+                <div
+                    class="number"
+                    id="presentToday"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h4>
+                    Pending Leave
+                </h4>
+
+                <div
+                    class="number"
+                    id="pendingLeaves"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h4>
+                    Advance बाकी
+                </h4>
+
+                <div
+                    class="number"
+                    id="totalAdvance"
+                >
+                    ₹0
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                आजची माहिती
+            </h3>
+
+            <br>
+
+            <p>
+                कर्मचारी व्यवस्थापन,
+                Attendance, Leave,
+                Advance आणि Salary
+                येथून व्यवस्थापित करा.
+            </p>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/dashboard.js"></script>
+
+
+<script>
+
+function logout() {
+
+    localStorage.removeItem("token");
+
+    localStorage.removeItem("user");
+
+    window.location.href =
+        "../index.html";
+}
+
+
+const user =
+    JSON.parse(
+        localStorage.getItem("user")
+    );
+
+
+if (!user) {
+
+    window.location.href =
+        "../index.html";
+
+}
+else {
+
+    document
+        .getElementById("adminName")
+        .innerText =
+        user.name || "Admin";
+
+}
+
+</script>
+
+
+</body>
+</html>

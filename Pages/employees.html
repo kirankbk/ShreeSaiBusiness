@@ -1,0 +1,734 @@
+<!-- <!DOCTYPE html> -->
+<!-- <html lang="mr"> -->
+
+<!-- <head> -->
+
+    <!-- <meta charset="UTF-8"> -->
+
+    <!-- <meta -->
+        <!-- name="viewport" -->
+        <!-- content="width=device-width, initial-scale=1.0" -->
+    <!-- > -->
+
+    <!-- <title> -->
+        <!-- कर्मचारी - Shree Sai Business -->
+    <!-- </title> -->
+
+    <!-- <link -->
+        <!-- rel="stylesheet" -->
+        <!-- href="../css/style.css" -->
+    <!-- > -->
+
+<!-- </head> -->
+
+
+<!-- <body> -->
+
+
+<!-- <header class="top-header"> -->
+
+    <!-- <div class="header-title"> -->
+        <!-- श्री साई बिझनेस -->
+    <!-- </div> -->
+
+
+    <!-- <button -->
+        <!-- class="btn btn-danger" -->
+        <!-- onclick="logout()" -->
+    <!-- > -->
+        <!-- Logout -->
+    <!-- </button> -->
+
+<!-- </header> -->
+
+
+
+<!-- <div class="layout"> -->
+
+
+<!-- <aside class="sidebar"> -->
+
+    <!-- <h3> -->
+        <!-- Admin Menu -->
+    <!-- </h3> -->
+
+    <!-- <nav> -->
+
+        <!-- <a href="admin-dashboard.html"> -->
+            <!-- 🏠 Dashboard -->
+        <!-- </a> -->
+
+        <!-- <a href="employees.html"> -->
+            <!-- 👥 कर्मचारी -->
+        <!-- </a> -->
+
+        <!-- <a href="#"> -->
+            <!-- 📅 Attendance -->
+        <!-- </a> -->
+
+        <!-- <a href="#"> -->
+            <!-- 📝 Leave -->
+        <!-- </a> -->
+
+        <!-- <a href="#"> -->
+            <!-- 💰 Advance -->
+        <!-- </a> -->
+
+        <!-- <a href="#"> -->
+            <!-- 💵 Salary -->
+        <!-- </a> -->
+
+    <!-- </nav> -->
+
+<!-- </aside> -->
+
+
+
+<!-- <main class="main-content"> -->
+
+
+    <!-- <div -->
+        <!-- style=" -->
+        <!-- display:flex; -->
+        <!-- justify-content:space-between; -->
+        <!-- align-items:center; -->
+        <!-- margin-bottom:20px; -->
+        <!-- " -->
+    <!-- > -->
+
+        <!-- <h1 class="page-title"> -->
+            <!-- कर्मचारी व्यवस्थापन -->
+        <!-- </h1> -->
+
+
+        <!-- <button -->
+            <!-- class="btn btn-primary" -->
+            <!-- onclick="openEmployeeModal()" -->
+        <!-- > -->
+            <!-- + कर्मचारी जोडा -->
+        <!-- </button> -->
+
+    <!-- </div> -->
+
+
+
+    <!-- <div class="card"> -->
+
+        <!-- <div class="table-container"> -->
+
+            <!-- <table> -->
+
+                <!-- <thead> -->
+
+                    <!-- <tr> -->
+
+                        <!-- <th> -->
+                            <!-- कर्मचारी कोड -->
+                        <!-- </th> -->
+
+                        <!-- <th> -->
+                            <!-- नाव -->
+                        <!-- </th> -->
+
+                        <!-- <th> -->
+                            <!-- मोबाईल -->
+                        <!-- </th> -->
+
+                        <!-- <th> -->
+                            <!-- पद -->
+                        <!-- </th> -->
+
+                        <!-- <th> -->
+                            <!-- मासिक पगार -->
+                        <!-- </th> -->
+
+                        <!-- <th> -->
+                            <!-- Status -->
+                        <!-- </th> -->
+
+                        <!-- <th> -->
+                            <!-- Action -->
+                        <!-- </th> -->
+
+                    <!-- </tr> -->
+
+                <!-- </thead> -->
+
+
+                <!-- <tbody id="employeeTable"> -->
+
+                <!-- </tbody> -->
+
+            <!-- </table> -->
+
+        <!-- </div> -->
+
+    <!-- </div> -->
+
+
+<!-- </main> -->
+
+<!-- </div> -->
+
+
+
+<!-- <!-- Employee Modal --> -->
+
+<!-- <div -->
+    <!-- class="modal" -->
+    <!-- id="employeeModal" -->
+<!-- > -->
+
+    <!-- <div class="modal-content"> -->
+
+        <!-- <h2> -->
+            <!-- कर्मचारी माहिती -->
+        <!-- </h2> -->
+
+        <!-- <br> -->
+
+
+        <!-- <form id="employeeForm"> -->
+
+            <!-- <input -->
+                <!-- type="hidden" -->
+                <!-- id="employeeId" -->
+            <!-- > -->
+
+
+            <!-- <div class="form-group"> -->
+
+                <!-- <label> -->
+                    <!-- कर्मचारी नाव -->
+                <!-- </label> -->
+
+                <!-- <input -->
+                    <!-- type="text" -->
+                    <!-- id="employeeName" -->
+                    <!-- required -->
+                <!-- > -->
+
+            <!-- </div> -->
+
+
+            <!-- <div class="form-group"> -->
+
+                <!-- <label> -->
+                    <!-- कर्मचारी कोड -->
+                <!-- </label> -->
+
+                <!-- <input -->
+                    <!-- type="text" -->
+                    <!-- id="employeeCode" -->
+                    <!-- required -->
+                <!-- > -->
+
+            <!-- </div> -->
+
+
+            <!-- <div class="form-group"> -->
+
+                <!-- <label> -->
+                    <!-- मोबाईल -->
+                <!-- </label> -->
+
+                <!-- <input -->
+                    <!-- type="tel" -->
+                    <!-- id="mobile" -->
+                    <!-- required -->
+                <!-- > -->
+
+            <!-- </div> -->
+
+
+            <!-- <div class="form-group"> -->
+
+                <!-- <label> -->
+                    <!-- पद -->
+                <!-- </label> -->
+
+                <!-- <input -->
+                    <!-- type="text" -->
+                    <!-- id="designation" -->
+                    <!-- placeholder="उदा. कर्मचारी / Manager" -->
+                <!-- > -->
+
+            <!-- </div> -->
+
+
+            <!-- <div class="form-group"> -->
+
+                <!-- <label> -->
+                    <!-- मासिक पगार -->
+                <!-- </label> -->
+
+                <!-- <input -->
+                    <!-- type="number" -->
+                    <!-- id="monthlySalary" -->
+                    <!-- min="0" -->
+                    <!-- required -->
+                <!-- > -->
+
+            <!-- </div> -->
+
+
+            <!-- <div -->
+                <!-- style=" -->
+                <!-- display:flex; -->
+                <!-- gap:10px; -->
+                <!-- " -->
+            <!-- > -->
+
+                <!-- <button -->
+                    <!-- type="submit" -->
+                    <!-- class="btn btn-success" -->
+                <!-- > -->
+                    <!-- Save -->
+                <!-- </button> -->
+
+
+                <!-- <button -->
+                    <!-- type="button" -->
+                    <!-- class="btn btn-secondary" -->
+                    <!-- onclick="closeEmployeeModal()" -->
+                <!-- > -->
+                    <!-- Cancel -->
+                <!-- </button> -->
+
+            <!-- </div> -->
+
+        <!-- </form> -->
+
+    <!-- </div> -->
+
+<!-- </div> -->
+
+
+
+<!-- <script src="../js/api.js"></script> -->
+<!-- <script src="../js/employees.js"></script> -->
+
+
+<!-- <script> -->
+
+<!-- function logout() { -->
+
+    <!-- localStorage.clear(); -->
+
+    <!-- window.location.href = -->
+        <!-- "../index.html"; -->
+<!-- } -->
+
+<!-- </script> -->
+
+
+<!-- </body> -->
+<!-- </html> -->
+
+
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        कर्मचारी - Shree Sai Business
+    </title>
+
+    <link rel="stylesheet"
+          href="../css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="top-header">
+
+    <div class="header-title">
+        श्री साई बिझनेस
+    </div>
+
+
+    <div class="header-user">
+
+        <span id="adminName">
+            Admin
+        </span>
+
+        <button
+            class="btn btn-danger"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<div class="layout">
+
+
+<aside class="sidebar">
+
+    <h3>
+        Admin Menu
+    </h3>
+
+
+    <nav>
+
+        <a href="admin-dashboards.html">
+            🏠 Dashboard
+        </a>
+
+
+        <a
+            href="employees.html"
+            class="active">
+
+            👥 कर्मचारी
+
+        </a>
+
+
+        <a href="#">
+            📅 Attendance
+        </a>
+
+
+        <a href="#">
+            📝 Leave
+        </a>
+
+
+        <a href="#">
+            💰 Advance
+        </a>
+
+
+        <a href="#">
+            💵 Salary
+        </a>
+
+
+        <a href="#">
+            📊 Reports
+        </a>
+
+    </nav>
+
+</aside>
+
+
+
+<main class="main-content">
+
+
+<div class="page-header">
+
+    <h1 class="page-title">
+        कर्मचारी व्यवस्थापन
+    </h1>
+
+
+    <button
+        class="btn btn-primary"
+        onclick="openEmployeeModal()">
+
+        + कर्मचारी जोडा
+
+    </button>
+
+</div>
+
+
+
+<div class="card">
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        कर्मचारी कोड
+                    </th>
+
+                    <th>
+                        नाव
+                    </th>
+
+                    <th>
+                        मोबाईल
+                    </th>
+                 <th>
+                         व्यवसाय / विभाग
+                    </th>
+                    <th>
+                        पद
+                    </th>
+
+                    <th>
+                        मासिक पगार
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody
+                id="employeeTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</main>
+
+</div>
+
+
+
+<!-- EMPLOYEE MODAL -->
+
+<div
+    class="modal"
+    id="employeeModal">
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <h2>
+                कर्मचारी माहिती
+            </h2>
+
+
+            <button
+                class="close-btn"
+                onclick="closeEmployeeModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <form id="employeeForm">
+
+
+            <input
+                type="hidden"
+                id="employeeId">
+
+
+
+            <div class="form-group">
+
+                <label>
+                    कर्मचारी नाव *
+                </label>
+
+                <input
+                    type="text"
+                    id="employeeName"
+                    required>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    कर्मचारी कोड *
+                </label>
+
+                <input
+                    type="text"
+                    id="employeeCode"
+                    required>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    मोबाईल *
+                </label>
+
+                <input
+                    type="tel"
+                    id="mobile"
+                    maxlength="10"
+                    required>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    पद
+                </label>
+
+                <input
+                    type="text"
+                    id="designation"
+                    placeholder="उदा. कर्मचारी / Manager">
+
+            </div>
+        <div class="form-group">
+
+                <label>
+                 Joining Date
+                </label>
+
+                <input type="date" id="joiningDate" />
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    व्यवसाय / विभाग
+                </label>
+
+                <select id="businessType">
+
+                    <option value="">
+                        निवडा
+                    </option>
+
+                    <option value="Petrol Pump">
+                        Petrol Pump
+                    </option>
+
+                    <option value="Shree Sai Vajan Kata">
+                        Shree Sai Vajan Kata
+                    </option>
+
+                    <option value="Beer Bar">
+                        Beer Bar
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label>
+                    मासिक पगार *
+                </label>
+
+                <input
+                    type="number"
+                    id="monthlySalary"
+                    min="0"
+                    step="0.01"
+                    required>
+
+            </div>
+
+
+
+            <div
+                style="
+                display:flex;
+                gap:10px;
+                ">
+
+                <button
+                    type="submit"
+                    class="btn btn-success">
+
+                    Save
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="closeEmployeeModal()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script src="../js/api.js"></script>
+<!-- <script src="../js/guard.js"></script> -->
+<script src="../js/employees.js"></script>
+
+
+<script>
+
+<!-- const admin = -->
+    <!-- requireAdmin(); -->
+
+
+<!-- if (admin) { -->
+
+    <!-- document -->
+        <!-- .getElementById("adminName") -->
+        <!-- .innerText = -->
+        <!-- admin.name || "Admin"; -->
+
+<!-- } -->
+
+</script>
+
+
+</body>
+</html>

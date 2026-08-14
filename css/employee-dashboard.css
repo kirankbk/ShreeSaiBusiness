@@ -1,0 +1,303 @@
+/* =====================================
+   EMPLOYEE DASHBOARD
+===================================== */
+
+.employee-container {
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px;
+
+}
+
+
+.welcome-card {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 3px 15px
+        rgba(0,0,0,0.08);
+
+}
+
+
+.employee-info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.employee-info-grid > div {
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    background: #f5f6f8;
+
+}
+
+
+.employee-info-grid span,
+.salary-summary span,
+.attendance-status-card span {
+
+    display: block;
+
+    font-size: 13px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.employee-info-grid strong,
+.salary-summary strong,
+.attendance-status-card strong {
+
+    font-size: 17px;
+
+}
+
+
+.attendance-status-card {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 15px;
+
+}
+
+
+.attendance-status-card > div {
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    background: #f5f6f8;
+
+}
+
+
+.attendance-actions {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+
+.salary-summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+}
+
+
+.salary-summary > div {
+
+    padding: 18px;
+
+    background: #f5f6f8;
+
+    border-radius: 10px;
+
+}
+
+
+.salary-net {
+
+    background:
+        #e9f7ef !important;
+
+}
+
+
+.salary-net strong {
+
+    font-size: 24px;
+
+}
+
+
+.advance-total-card {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    background: #f5f6f8;
+
+}
+
+
+.advance-total-card strong {
+
+    font-size: 25px;
+
+}
+
+
+.inner-card {
+
+    background: #fafafa;
+
+}
+
+
+.text-success {
+
+    font-weight: bold;
+
+}
+
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 768px) {
+
+    .employee-container {
+
+        padding: 10px;
+
+    }
+
+
+    .welcome-card {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 18px;
+
+    }
+
+
+    .employee-info-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .attendance-status-card {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .salary-summary {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    .attendance-actions {
+
+        flex-direction: column;
+
+    }
+
+
+    .attendance-actions .btn {
+
+        width: 100%;
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .employee-info-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .salary-summary {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .welcome-card h1 {
+
+        font-size: 22px;
+
+    }
+
+
+    .card {
+
+        padding: 15px;
+
+    }
+
+
+    .page-header {
+
+        align-items: flex-start;
+
+    }
+
+}

@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Employee Dashboard - Shree Sai Business
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+		
+		<link
+        rel="stylesheet"
+        href="../css/employee-dashboard.css">
+
+</head>
+
+
+<body>
+
+<!-- =====================================
+     HEADER
+====================================== -->
+
+<header class="top-header">
+
+    <div class="header-title">
+
+        श्री साई बिझनेस
+
+        <small>
+            | Employee Panel
+        </small>
+
+    </div>
+
+
+    <div class="header-user">
+
+        <span id="employeeName">
+            Employee
+        </span>
+
+        <button
+            class="btn btn-danger"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<div class="employee-container">
+
+
+    <!-- =================================
+         WELCOME
+    ================================== -->
+
+    <section class="welcome-card">
+
+        <div>
+
+            <h1>
+
+                नमस्कार,
+                <span id="welcomeName">
+                    Employee
+                </span> 👋
+
+            </h1>
+
+            <p>
+                श्री साई बिझनेस कर्मचारी Dashboard
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <span id="businessName">
+                -
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         EMPLOYEE INFORMATION
+    ================================== -->
+
+    <section class="card">
+
+        <h2>
+            👤 माझी माहिती
+        </h2>
+
+
+        <div class="employee-info-grid">
+
+
+            <div>
+
+                <span>
+                    कर्मचारी नाव
+                </span>
+
+                <strong
+                    id="profileName">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Employee Code
+                </span>
+
+                <strong
+                    id="profileCode">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Mobile
+                </span>
+
+                <strong
+                    id="profileMobile">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Business
+                </span>
+
+                <strong
+                    id="profileBusiness">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    पद
+                </span>
+
+                <strong
+                    id="profileDesignation">
+                    -
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Monthly Salary
+                </span>
+
+                <strong
+                    id="profileSalary">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         TODAY ATTENDANCE
+    ================================== -->
+
+    <section class="card">
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    📅 आजची Attendance
+                </h2>
+
+                <p id="todayDate">
+                    -
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="loadTodayAttendance()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <div class="attendance-status-card">
+
+
+            <div>
+
+                <span>
+                    Status
+                </span>
+
+                <strong
+                    id="todayAttendanceStatus">
+
+                    Not Marked
+
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Check In
+                </span>
+
+                <strong
+                    id="todayCheckIn">
+
+                    -
+
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Check Out
+                </span>
+
+                <strong
+                    id="todayCheckOut">
+
+                    -
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="attendance-actions">
+
+
+            <button
+                id="checkInButton"
+                class="btn btn-success"
+                onclick="checkIn()">
+
+                🟢 Check In
+
+            </button>
+
+
+            <button
+                id="checkOutButton"
+                class="btn btn-danger"
+                onclick="checkOut()"
+                disabled>
+
+                🔴 Check Out
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         MONTHLY ATTENDANCE
+    ================================== -->
+
+    <section class="card">
+
+        <div class="page-header">
+
+            <h2>
+                📊 माझी Monthly Attendance
+            </h2>
+
+            <button
+                class="btn btn-primary"
+                onclick="loadMonthlyAttendance()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+
+            <div class="dashboard-card">
+
+                <h4>
+                    Present
+                </h4>
+
+                <div
+                    class="dashboard-number"
+                    id="monthlyPresent">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h4>
+                    Absent
+                </h4>
+
+                <div
+                    class="dashboard-number"
+                    id="monthlyAbsent">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h4>
+                    Leave
+                </h4>
+
+                <div
+                    class="dashboard-number"
+                    id="monthlyLeave">
+
+                    0
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h4>
+                    Holiday
+                </h4>
+
+                <div
+                    class="dashboard-number"
+                    id="monthlyHoliday">
+
+                    0
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Check In
+                        </th>
+
+                        <th>
+                            Check Out
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="monthlyAttendanceTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         APPLY LEAVE
+    ================================== -->
+
+    <section class="card">
+
+        <h2>
+            📝 Leave Apply
+        </h2>
+
+
+        <div class="filter-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Leave Type
+                </label>
+
+                <select id="leaveType">
+
+                    <option value="Casual">
+                        Casual Leave
+                    </option>
+
+                    <option value="Sick">
+                        Sick Leave
+                    </option>
+
+                    <option value="Emergency">
+                        Emergency Leave
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    From Date
+                </label>
+
+                <input
+                    type="date"
+                    id="leaveFromDate">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    To Date
+                </label>
+
+                <input
+                    type="date"
+                    id="leaveToDate">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Reason
+                </label>
+
+                <input
+                    type="text"
+                    id="leaveReason"
+                    maxlength="500"
+                    placeholder="Leave चे कारण">
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="applyLeave()">
+
+            📝 Leave Apply करा
+
+        </button>
+
+    </section>
+
+
+
+    <!-- =================================
+         LEAVE HISTORY
+    ================================== -->
+
+    <section class="card">
+
+        <div class="page-header">
+
+            <h2>
+                📋 माझी Leave History
+            </h2>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="loadMyLeaves()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Leave Type
+                        </th>
+
+                        <th>
+                            From
+                        </th>
+
+                        <th>
+                            To
+                        </th>
+
+                        <th>
+                            Days
+                        </th>
+
+                        <th>
+                            Reason
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="myLeaveTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         CURRENT SALARY
+    ================================== -->
+
+    <section class="card">
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    💰 माझा चालू महिन्याचा पगार
+                </h2>
+
+                <p id="salaryPeriod">
+                    -
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="loadCurrentSalary()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <div class="salary-summary">
+
+
+            <div>
+
+                <span>
+                    Monthly Salary
+                </span>
+
+                <strong
+                    id="currentMonthlySalary">
+
+                    ₹0
+
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Present Days
+                </span>
+
+                <strong
+                    id="currentPresentDays">
+
+                    0
+
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Leave Days
+                </span>
+
+                <strong
+                    id="currentLeaveDays">
+
+                    0
+
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Holiday Days
+                </span>
+
+                <strong
+                    id="currentHolidayDays">
+
+                    0
+
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Total Advance
+                </span>
+
+                <strong
+                    id="currentAdvance">
+
+                    ₹0
+
+                </strong>
+
+            </div>
+
+
+            <div class="salary-net">
+
+                <span>
+                    Net Salary
+                </span>
+
+                <strong
+                    id="currentNetSalary">
+
+                    ₹0
+
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Salary Status
+                </span>
+
+                <strong
+                    id="currentSalaryStatus">
+
+                    -
+
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         ADVANCE HISTORY
+    ================================== -->
+
+    <section class="card">
+
+        <div class="page-header">
+
+            <h2>
+                💵 माझे Advance
+            </h2>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="loadMyAdvances()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <div class="advance-total-card">
+
+            <span>
+                या महिन्यातील Total Advance
+            </span>
+
+            <strong
+                id="myTotalAdvance">
+
+                ₹0
+
+            </strong>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Amount
+                        </th>
+
+                        <th>
+                            Remark
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="myAdvanceTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================
+         PAYMENT HISTORY
+    ================================== -->
+
+    <section class="card">
+
+        <div class="page-header">
+
+            <h2>
+                💳 Salary Payment History
+            </h2>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="loadPaymentHistory()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Month
+                        </th>
+
+                        <th>
+                            Net Salary
+                        </th>
+
+                        <th>
+                            Paid Amount
+                        </th>
+
+                        <th>
+                            Payment Date
+                        </th>
+
+                        <th>
+                            Mode
+                        </th>
+
+                        <th>
+                            Reference
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="paymentHistoryTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+
+<script src="../js/api.js"></script>
+
+<script src="../js/auth.js"></script>
+
+<script src="../js/guard.js"></script>
+
+<script src="../js/employeedashboard.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Admin Dashboard - Shree Sai Business
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+
+</head>
+
+
+<body>
+
+<header class="top-header">
+
+    <div class="header-title">
+
+        श्री साई बिझनेस
+
+        <small>
+            | Admin Panel
+        </small>
+
+    </div>
+
+
+    <div class="header-user">
+
+        <span id="adminName">
+            Admin
+        </span>
+
+        <button
+            class="btn btn-danger"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<div class="layout">
+
+
+<!-- =====================================
+     SIDEBAR
+====================================== -->
+
+<aside class="sidebar">
+
+    <h3>
+        Admin Menu
+    </h3>
+
+
+    <nav>
+
+        <a
+            href="admin-dashboards.html"
+            class="active">
+
+            🏠 Dashboard
+
+        </a>
+
+
+        <a href="#attendance">
+
+            📅 Attendance
+
+        </a>
+
+
+        <a href="employees.html">
+
+            👥 Employees
+
+        </a>
+
+
+        <a href="#leave">
+
+            📝 Leave Applications
+
+        </a>
+
+<a href="#advances">
+
+    💵 Advance Payment
+
+</a>
+        <a href="#reports">
+
+            📊 Reports
+
+        </a>
+
+        <a href="#salary">
+
+         💰 Salary & Payment
+
+        </a>
+        <a href="#settings">
+
+            ⚙️ Settings
+
+        </a>
+
+    </nav>
+
+</aside>
+
+
+
+<!-- =====================================
+     MAIN CONTENT
+====================================== -->
+
+<main class="main-content">
+
+
+<!-- =====================================
+     DASHBOARD HEADER
+====================================== -->
+
+<section id="dashboard">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+
+                Admin Dashboard
+
+            </h1>
+
+            <p>
+
+                श्री साई बिझनेस
+                कर्मचारी व्यवस्थापन
+
+            </p>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="loadDashboard()">
+
+            🔄 Refresh
+
+        </button>
+
+    </div>
+
+
+    <!-- SUMMARY CARDS -->
+
+    <div class="dashboard-grid">
+
+
+        <div class="dashboard-card">
+
+            <h4>
+                एकूण कर्मचारी
+            </h4>
+
+            <div
+                class="dashboard-number"
+                id="totalEmployees">
+
+                0
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h4>
+                आज Present
+            </h4>
+
+            <div
+                class="dashboard-number"
+                id="todayPresent">
+
+                0
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h4>
+                आज Absent
+            </h4>
+
+            <div
+                class="dashboard-number"
+                id="todayAbsent">
+
+                0
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h4>
+                Pending Leave
+            </h4>
+
+            <div
+                class="dashboard-number"
+                id="pendingLeaves">
+
+                0
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     ATTENDANCE
+====================================== -->
+
+<section
+    id="attendance"
+    class="admin-section">
+
+
+    <div class="card">
+
+        <div class="page-header">
+
+            <h2>
+                📅 कर्मचारी Attendance
+            </h2>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="loadAttendance()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <!-- FILTER -->
+
+        <div class="filter-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    तारीख
+                </label>
+
+                <input
+                    type="date"
+                    id="attendanceDate">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Business
+                </label>
+
+                <select
+                    id="attendanceBusiness">
+
+                    <option value="">
+                        सर्व Business
+                    </option>
+
+                    <option value="Petrol Pump">
+                        Petrol Pump
+                    </option>
+
+                    <option value="Shree Sai Vajan Kata">
+                        Shree Sai Vajan Kata
+                    </option>
+
+                    <option value="Beer Bar">
+                        Beer Bar
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                class="form-group filter-button">
+
+                <button
+                    class="btn btn-success"
+                    onclick="loadAttendance()">
+
+                    Search
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+
+        <!-- ATTENDANCE TABLE -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            कर्मचारी
+                        </th>
+
+                        <th>
+                            कोड
+                        </th>
+
+                        <th>
+                            Business
+                        </th>
+
+                        <th>
+                            Check In
+                        </th>
+
+                        <th>
+                            Check Out
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="attendanceTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     EMPLOYEES
+====================================== -->
+
+<section
+    id="employees"
+    class="admin-section">
+
+
+    <div class="card">
+
+        <div class="page-header">
+
+            <h2>
+                👥 कर्मचारी यादी
+            </h2>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="loadEmployees()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            कर्मचारी
+                        </th>
+
+                        <th>
+                            Employee Code
+                        </th>
+
+                        <th>
+                            Mobile
+                        </th>
+
+                        <th>
+                            Business
+                        </th>
+
+                        <th>
+                            पद
+                        </th>
+
+                        <th>
+                            Salary
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="employeeTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     LEAVE MANAGEMENT
+====================================== -->
+
+<section
+    id="leave"
+    class="admin-section">
+
+
+    <div class="card">
+
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    📝 Leave Applications
+                </h2>
+
+                <p>
+                    कर्मचारी Leave Approve / Reject करा
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="loadLeaveApplications()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <!-- LEAVE FILTER -->
+
+        <div class="filter-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Status
+                </label>
+
+                <select
+                    id="leaveStatusFilter"
+                    onchange="loadLeaveApplications()">
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Approved">
+                        Approved
+                    </option>
+
+                    <option value="Rejected">
+                        Rejected
+                    </option>
+
+                    <option value="">
+                        All
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Employee
+                </label>
+
+                <select
+                    id="leaveEmployeeFilter"
+                    onchange="loadLeaveApplications()">
+
+                    <option value="">
+                        सर्व कर्मचारी
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <br>
+
+
+        <!-- LEAVE TABLE -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            कर्मचारी
+                        </th>
+
+                        <th>
+                            Leave Type
+                        </th>
+
+                        <th>
+                            From
+                        </th>
+
+                        <th>
+                            To
+                        </th>
+
+                        <th>
+                            दिवस
+                        </th>
+
+                        <th>
+                            कारण
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody
+                    id="leaveApplicationsTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================
+     REPORTS PLACEHOLDER
+====================================== -->
+
+<section id="reports">
+
+    <div class="card">
+
+        <h2>
+            📊 Reports
+        </h2>
+
+        <p>
+
+            Attendance, Salary आणि Payment
+            Reports पुढील Step मध्ये जोडू.
+
+        </p>
+
+    </div>
+
+</section>
+
+<section id="salary" class="admin-section">
+
+    <div class="card">
+
+        <div class="page-header">
+
+            <div>
+                <h2>💰 कर्मचारी Salary Management</h2>
+
+                <p>
+                    मासिक पगार Calculate, Approve आणि Pay करा
+                </p>
+            </div>
+
+            <button
+                class="btn btn-primary"
+                onclick="loadSalaryList()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <!-- Salary Filters -->
+
+        <div class="filter-grid">
+
+            <div class="form-group">
+
+                <label>महिना</label>
+
+                <select id="salaryMonth">
+
+                    <option value="1">जानेवारी</option>
+                    <option value="2">फेब्रुवारी</option>
+                    <option value="3">मार्च</option>
+                    <option value="4">एप्रिल</option>
+                    <option value="5">मे</option>
+                    <option value="6">जून</option>
+                    <option value="7">जुलै</option>
+                    <option value="8">ऑगस्ट</option>
+                    <option value="9">सप्टेंबर</option>
+                    <option value="10">ऑक्टोबर</option>
+                    <option value="11">नोव्हेंबर</option>
+                    <option value="12">डिसेंबर</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>वर्ष</label>
+
+                <input
+                    type="number"
+                    id="salaryYear"
+                    min="2020"
+                    max="2100">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Business</label>
+
+                <select id="salaryBusiness">
+
+                    <option value="">
+                        सर्व Business
+                    </option>
+
+                    <option value="Petrol Pump">
+                        Petrol Pump
+                    </option>
+
+                    <option value="Shree Sai Vajan Kata">
+                        Shree Sai Vajan Kata
+                    </option>
+
+                    <option value="Beer Bar">
+                        Beer Bar
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group filter-button">
+
+                <button
+                    class="btn btn-success"
+                    onclick="loadSalaryList()">
+
+                    🔍 Calculate
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <br>
+
+
+        <!-- Salary Table -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>कर्मचारी</th>
+
+                        <th>Business</th>
+
+                        <th>Monthly Salary</th>
+
+                        <th>Present</th>
+
+                        <th>Leave</th>
+
+                        <th>Advance</th>
+
+                        <th>Net Salary</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="salaryTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+<section id="advances" class="admin-section">
+
+    <div class="card">
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>
+                    💵 Advance Payment
+                </h2>
+
+                <p>
+                    कर्मचारी Advance Payment व्यवस्थापन
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                onclick="loadAdvanceData()">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+        <!-- =================================
+             SUMMARY
+        ================================== -->
+
+        <div class="dashboard-grid">
+
+            <div class="dashboard-card">
+
+                <h4>
+                    या महिन्याचा Advance
+                </h4>
+
+                <div
+                    class="dashboard-number"
+                    id="totalMonthlyAdvance">
+
+                    ₹0
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h4>
+                    Employees with Advance
+                </h4>
+
+                <div
+                    class="dashboard-number"
+                    id="employeesWithAdvance">
+
+                    0
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+
+        <!-- =================================
+             ADD ADVANCE
+        ================================== -->
+
+        <div class="card inner-card">
+
+            <h3>
+                ➕ नवीन Advance द्या
+            </h3>
+
+
+            <div class="filter-grid">
+
+
+                <!-- Employee -->
+
+                <div class="form-group">
+
+                    <label>
+                        कर्मचारी *
+                    </label>
+
+                    <select
+                        id="advanceEmployee">
+
+                        <option value="">
+                            कर्मचारी निवडा
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Date -->
+
+                <div class="form-group">
+
+                    <label>
+                        Advance Date *
+                    </label>
+
+                    <input
+                        type="date"
+                        id="advanceDate">
+
+                </div>
+
+
+                <!-- Amount -->
+
+                <div class="form-group">
+
+                    <label>
+                        Amount *
+                    </label>
+
+                    <input
+                        type="number"
+                        id="advanceAmount"
+                        min="1"
+                        step="0.01"
+                        placeholder="उदा. 5000">
+
+                </div>
+
+
+                <!-- Remark -->
+
+                <div class="form-group">
+
+                    <label>
+                        कारण / Remark
+                    </label>
+
+                    <input
+                        type="text"
+                        id="advanceRemark"
+                        maxlength="500"
+                        placeholder="उदा. घर खर्च">
+
+                </div>
+
+
+            </div>
+
+
+            <br>
+
+
+            <button
+                class="btn btn-success"
+                onclick="giveAdvance()">
+
+                💵 Advance Save करा
+
+            </button>
+
+        </div>
+
+
+        <br>
+
+
+        <!-- =================================
+             EMPLOYEE MONTHLY SUMMARY
+        ================================== -->
+
+        <div class="card inner-card">
+
+            <div class="page-header">
+
+                <h3>
+                    📊 Employee Advance Summary
+                </h3>
+
+
+                <div>
+
+                    <select
+                        id="advanceMonth"
+                        onchange="loadAdvanceData()">
+
+                        <option value="1">जानेवारी</option>
+                        <option value="2">फेब्रुवारी</option>
+                        <option value="3">मार्च</option>
+                        <option value="4">एप्रिल</option>
+                        <option value="5">मे</option>
+                        <option value="6">जून</option>
+                        <option value="7">जुलै</option>
+                        <option value="8">ऑगस्ट</option>
+                        <option value="9">सप्टेंबर</option>
+                        <option value="10">ऑक्टोबर</option>
+                        <option value="11">नोव्हेंबर</option>
+                        <option value="12">डिसेंबर</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                कर्मचारी
+                            </th>
+
+                            <th>
+                                Business
+                            </th>
+
+                            <th>
+                                Monthly Salary
+                            </th>
+
+                            <th>
+                                Total Advance
+                            </th>
+
+                            <th>
+                                Remaining Salary
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="advanceSummaryTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <br>
+
+
+        <!-- =================================
+             ADVANCE HISTORY
+        ================================== -->
+
+        <div class="card inner-card">
+
+            <div class="page-header">
+
+                <div>
+
+                    <h3>
+                        📋 Advance History
+                    </h3>
+
+                    <p>
+                        या महिन्यातील सर्व Advance Transactions
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Date
+                            </th>
+
+                            <th>
+                                Employee
+                            </th>
+
+                            <th>
+                                Business
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Remark
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="advanceHistoryTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+</div>
+
+
+
+
+
+<div
+    id="paymentModal"
+    class="modal"
+    style="display:none">
+
+    <div class="modal-content">
+
+        <div class="page-header">
+
+            <h2>
+                💰 Salary Payment
+            </h2>
+
+            <button
+                class="btn btn-danger"
+                onclick="closePaymentModal()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <input
+            type="hidden"
+            id="paymentSalaryId">
+
+
+        <div class="form-group">
+
+            <label>
+                Payment Amount
+            </label>
+
+            <input
+                type="number"
+                id="paymentAmount"
+                step="0.01"
+                min="0">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Payment Mode
+            </label>
+
+            <select id="paymentMode">
+
+                <option value="Cash">
+                    Cash
+                </option>
+
+                <option value="Bank Transfer">
+                    Bank Transfer
+                </option>
+
+                <option value="UPI">
+                    UPI
+                </option>
+
+                <option value="Cheque">
+                    Cheque
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Transaction / Reference No.
+            </label>
+
+            <input
+                type="text"
+                id="paymentReference"
+                maxlength="100">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Payment Date
+            </label>
+
+            <input
+                type="date"
+                id="paymentDate">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Remark
+            </label>
+
+            <textarea
+                id="paymentRemark"
+                rows="3">
+            </textarea>
+
+        </div>
+
+
+        <button
+            class="btn btn-success"
+            onclick="paySalary()">
+
+            ✓ Confirm Payment
+
+        </button>
+
+    </div>
+
+</div>
+<script src="../js/api.js"></script>
+
+<script src="../js/auth.js"></script>
+
+<script src="../js/guard.js"></script>
+
+<script src="../js/admin-dashboards.js"></script>
+</body>
+
+</html>
