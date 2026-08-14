@@ -197,7 +197,7 @@ async function loadEmployeesForAdvance() {
 }
 
 async function giveAdvance() {
-debugger
+
     const employeeId =
         document
             .getElementById(
@@ -283,7 +283,7 @@ debugger
     try {
 
         await apiRequest(
-            "/advances",
+            "/admin/advances",
             {
 
                 method: "POST",
@@ -298,7 +298,8 @@ debugger
 
                         amount,
 
-                        remark
+                        remark,
+						userId:1
 
                     })
 
@@ -375,7 +376,7 @@ async function loadAdvanceSummary() {
 
         const result =
             await apiRequest(
-                `/salary/summary?month=${month}&year=${year}`
+                `/admin/advances?month=${month}&year=${year}`
             );
 
 
@@ -453,19 +454,19 @@ function renderAdvanceSummary(
 
             const monthlySalary =
                 Number(
-                    item.monthlySalary || 0
+                    item.MonthlySalary || 0
                 );
 
 
             const totalAdvance =
                 Number(
-                    item.totalAdvance || 0
+                    item.Amount || 0
                 );
 
 
             const remaining =
                 monthlySalary -
-                totalAdvance;
+                item.RemainingAmount;
 
 
             row.innerHTML = `
@@ -473,7 +474,7 @@ function renderAdvanceSummary(
                 <td>
 
                     ${escapeHtml(
-                        item.employeeName ||
+                        item.EmployeeName ||
                         "-"
                     )}
 
@@ -483,7 +484,7 @@ function renderAdvanceSummary(
                 <td>
 
                     ${escapeHtml(
-                        item.businessType ||
+                        item.BusinessType ||
                         "-"
                     )}
 
@@ -550,7 +551,7 @@ function calculateAdvanceTotals(
 
             const amount =
                 Number(
-                    item.TotalAdvance || 0
+                    item.Amount || 0
                 );
 
 
@@ -603,7 +604,7 @@ async function loadAdvanceHistory() {
 
         const result =
             await apiRequest(
-                `/salary/summary?month=${month}&year=${year}`
+                `/admin/advances/summary?month=${month}&year=${year}`
             );
 
 
@@ -706,7 +707,7 @@ function renderAdvanceHistory(
                         class="btn btn-danger btn-sm"
                         onclick="
                         cancelAdvance(
-                            ${advance.advanceId}
+                            ${advance.AdvanceId}
                         )">
 
                         ✕ Cancel
@@ -723,7 +724,7 @@ function renderAdvanceHistory(
                 <td>
 
                     ${formatDate(
-                        advance.advanceDate
+                        advance.AdvanceDate
                     )}
 
                 </td>
@@ -732,7 +733,7 @@ function renderAdvanceHistory(
                 <td>
 
                     ${escapeHtml(
-                        advance.employeeName ||
+                        advance.EmployeeName ||
                         "-"
                     )}
 
@@ -742,7 +743,7 @@ function renderAdvanceHistory(
                 <td>
 
                     ${escapeHtml(
-                        advance.businessType ||
+                        advance.BusinessType ||
                         "-"
                     )}
 
@@ -754,7 +755,7 @@ function renderAdvanceHistory(
                     <strong>
 
                         ${money(
-                            advance.amount
+                            advance.Amount
                         )}
 
                     </strong>
@@ -765,7 +766,7 @@ function renderAdvanceHistory(
                 <td>
 
                     ${escapeHtml(
-                        advance.remark ||
+                        advance.Remark ||
                         "-"
                     )}
 
@@ -835,7 +836,8 @@ async function cancelAdvance(
                     JSON.stringify({
 
                         reason:
-                            reason.trim()
+                            reason.trim(),
+							userId:1
 
                     })
 
@@ -1477,7 +1479,7 @@ function updateAttendanceSummary(
 async function loadLeaveApplications() {
 
     try {
-
+debugger
         const status =
             document
                 .getElementById(
@@ -1495,7 +1497,7 @@ async function loadLeaveApplications() {
 
 
         let endpoint =
-            "/leaves";
+            "/admin/leaves";
 
 
         const params = [];
@@ -1534,7 +1536,7 @@ async function loadLeaveApplications() {
 
         const result =
             await apiRequest(
-                endpoint
+                "/admin/leaves/Pending"
             );
 
 
@@ -1819,14 +1821,19 @@ async function approveLeave(
 
     if (!confirmed)
         return;
-
+debugger
 
     try {
 
         await apiRequest(
-            `/leaves/${leaveId}/approve`,
+            `/admin/leaves/${leaveId}/approve`,
             {
-                method: "PUT"
+                method: "PUT",
+				body:
+                    JSON.stringify({
+                        userId:1
+                            
+                    })
             }
         );
 
@@ -1857,7 +1864,7 @@ async function approveLeave(
 async function rejectLeave(
     leaveId
 ) {
-
+debugger
     const reason =
         prompt(
             "Leave reject करण्याचे कारण:"
@@ -1873,14 +1880,15 @@ async function rejectLeave(
     try {
 
         await apiRequest(
-            `/leaves/${leaveId}/reject`,
+            `/admin/leaves/${leaveId}/reject`,
             {
                 method: "PUT",
 
                 body:
                     JSON.stringify({
                         reason:
-                            reason.trim()
+                            reason.trim(),
+							userId:1
                     })
             }
         );
@@ -1942,7 +1950,7 @@ function formatDate(value) {
         return value;
 
 
-    return date.toLocaleDateString(
+    return date.toLocaleString(
         "en-IN"
     );
 
@@ -2007,7 +2015,7 @@ function escapeHtml(value) {
 async function loadSalaryList() {
 
     try {
-
+debugger
         const month =
             document
                 .getElementById("salaryMonth")
@@ -2027,7 +2035,7 @@ async function loadSalaryList() {
 
 
         let endpoint =
-            `/salary/summary?month=${month}&year=${year}`;
+            `/admin/salary?month=${month}&year=${year}`;
 
 
         if (business) {
@@ -2111,7 +2119,7 @@ function renderSalaryList(salaries) {
 
 
             const status =
-                salary.Status ||
+                salary.status ||
                 "Generated";
 
 
@@ -2244,7 +2252,7 @@ function renderSalaryList(salaries) {
 
                 <td>
 
-                    ${salary.AbsentDays || 0}
+                    ${salary.LeaveDays || 0}
 
                 </td>
 
@@ -2320,7 +2328,11 @@ async function approveSalary(
         await apiRequest(
             `/admin/salary/${salaryId}/approve`,
             {
-                method: "PUT"
+                method: "PUT",
+				 body:
+                    JSON.stringify({                        
+					    userId:1
+                    })
             }
         );
 

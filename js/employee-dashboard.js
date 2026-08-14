@@ -140,10 +140,11 @@ localStorage.setItem("EmployeeId",currentEmployee.EmployeeId);
 ========================================= */
 
 async function loadTodayAttendance() {
-
+debugger
     const result =
         await apiRequest(
-            "/attendance/daily/today"
+            "/employees/attendance/today",
+			
         );
 
 
@@ -260,9 +261,15 @@ async function checkIn() {
     try {
 
         await apiRequest(
-            "/employee/attendance/check-in",
+            "/employees/attendance/check-in",
             {
-                method: "POST"
+                method: "POST",
+				 body:
+                    JSON.stringify({
+
+                      employeeId:2
+
+                    })
             }
         );
 
@@ -297,9 +304,14 @@ async function checkOut() {
     try {
 
         await apiRequest(
-            "/employee/attendance/check-out",
+            "/employees/attendance/check-out",
             {
-                method: "POST"
+                method: "POST",body:
+                    JSON.stringify({
+
+                      employeeId:2
+
+                    })
             }
         );
 
