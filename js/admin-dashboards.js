@@ -8,7 +8,7 @@ let employees = [];
 document.addEventListener(
     "DOMContentLoaded",
     async function () {
-
+debugger
         const user =
             getLoggedUser();
 
@@ -51,6 +51,41 @@ document.addEventListener(
 
     }
 );
+
+function getLoggedUser() {
+
+    const token =
+        localStorage.getItem("token");
+
+    const user =
+        localStorage.getItem("user");
+
+
+    if (!token || !user) {
+
+        window.location.href =
+            "../index.html";
+
+        return null;
+    }
+
+
+    try {
+
+        return JSON.parse(user);
+
+    }
+    catch {
+
+        localStorage.clear();
+
+        window.location.href =
+            "../index.html";
+
+        return null;
+    }
+}
+
 function setCurrentMonth() {
 
     const now = new Date();
@@ -174,8 +209,8 @@ async function loadEmployeesForAdvance() {
 
 
                 option.textContent =
-                    `${employee.EmployeeName || employee.name}
-                     - ${employee.BusinessType || ""}`;
+                    `${employee.EmployeeName || employee.EmployeeName}
+                     - ${employee.businessType || ""}`;
 
 
                 select.appendChild(
@@ -299,7 +334,7 @@ async function giveAdvance() {
                         amount,
 
                         remark,
-						userId:1
+						userId:JSON.parse(localStorage.getItem("user")).userId
 
                     })
 
@@ -837,7 +872,7 @@ async function cancelAdvance(
 
                         reason:
                             reason.trim(),
-							userId:1
+							userId:JSON.parse(localStorage.getItem("user")).userId
 
                     })
 
@@ -1044,7 +1079,7 @@ function renderEmployees() {
 
                     ${escapeHtml(
                         employee.EmployeeName ||
-                        employee.name ||
+                        employee.EmployeeName ||
                         "-"
                     )}
 
@@ -1074,7 +1109,7 @@ function renderEmployees() {
                 <td>
 
                     ${escapeHtml(
-                        employee.BusinessType ||
+                        employee.businessType ||
                         "-"
                     )}
 
@@ -1163,12 +1198,12 @@ function populateEmployeeFilter() {
 
 
             option.value =
-                employee.employeeId;
+                employee.EmployeeId;
 
 
             option.textContent =
                 employee.EmployeeName ||
-                employee.name;
+                employee.EmployeeName;
 
 
             select.appendChild(
@@ -1188,7 +1223,7 @@ function populateEmployeeFilter() {
 async function loadAttendance() {
 
     try {
-
+debugger
         const date =
             document
                 .getElementById(
@@ -1206,7 +1241,7 @@ async function loadAttendance() {
 
 
         let endpoint =
-            `/attendance/daily/2026-08-10`;
+            `/attendance/daily/${date}`;
 
 
         if (business) {
@@ -1264,7 +1299,7 @@ async function loadAttendance() {
 function renderAttendance(
     attendance
 ) {
-
+debugger
     const table =
         document.getElementById(
             "attendanceTable"
@@ -1360,7 +1395,7 @@ function renderAttendance(
                 <td>
 
                     ${escapeHtml(
-                        item.BusinessType ||
+                        item.businessType ||
                         "-"
                     )}
 
@@ -1497,7 +1532,7 @@ debugger
 
 
         let endpoint =
-            "/admin/leaves";
+            "/admin/leaves/pending";
 
 
         const params = [];
@@ -1536,7 +1571,7 @@ debugger
 
         const result =
             await apiRequest(
-                "/admin/leaves/Pending"
+                endpoint
             );
 
 
@@ -1831,7 +1866,7 @@ debugger
                 method: "PUT",
 				body:
                     JSON.stringify({
-                        userId:1
+                        userId:JSON.parse(localStorage.getItem("user")).userId
                             
                     })
             }
@@ -1888,7 +1923,7 @@ debugger
                     JSON.stringify({
                         reason:
                             reason.trim(),
-							userId:1
+							userId:JSON.parse(localStorage.getItem("user")).userId
                     })
             }
         );
@@ -2119,7 +2154,7 @@ function renderSalaryList(salaries) {
 
 
             const status =
-                salary.status ||
+                salary.Status ||
                 "Generated";
 
 
@@ -2331,7 +2366,7 @@ async function approveSalary(
                 method: "PUT",
 				 body:
                     JSON.stringify({                        
-					    userId:1
+					    userId:JSON.parse(localStorage.getItem("user")).userId
                     })
             }
         );
@@ -2412,7 +2447,7 @@ function closePaymentModal() {
 
 
 async function paySalary() {
-
+debugger
     const salaryId =
         document
             .getElementById(
@@ -2511,7 +2546,7 @@ async function paySalary() {
                 body:
                     JSON.stringify({
 
-                        amount,
+                       paidAmount: amount,
 
                         paymentMode,
 
@@ -2519,7 +2554,8 @@ async function paySalary() {
 
                         paymentDate,
 
-                        remark
+                        remark,
+						userId:JSON.parse(localStorage.getItem("user")).userId
 
                     })
 
